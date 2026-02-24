@@ -61,9 +61,10 @@ class QzoneHttpClient:
         meta[QZONE_INTERNAL_HTTP_STATUS_KEY] = resp.status
 
         # 仅在明确登录失效时触发重登
-        if resp.status == HTTP_STATUS_UNAUTHORIZED or parsed.get(
-            "code"
-        ) == QZONE_CODE_LOGIN_EXPIRED:
+        if resp.status == HTTP_STATUS_UNAUTHORIZED or parsed.get("code") in (
+            QZONE_CODE_LOGIN_EXPIRED,
+            -100,
+        ):
             if retry >= 2:
                 raise RuntimeError("登录失效，重试失败")
 

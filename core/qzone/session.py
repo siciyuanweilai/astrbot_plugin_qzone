@@ -56,7 +56,7 @@ class QzoneSession:
             if not cookies_str:
                 raise RuntimeError("获取 Cookie 失败")
 
-            self.cfg.update_cookies(cookies_str)
+            # self.cfg.update_cookies(cookies_str)
 
         c = {k: v.value for k, v in SimpleCookie(cookies_str).items()}
         uin = int(c.get("uin", "0")[1:])
